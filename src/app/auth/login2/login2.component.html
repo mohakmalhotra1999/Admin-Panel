@@ -1,0 +1,37 @@
+<div class="container-fluid" style="background-color: azure; background-size: auto;" class="cont">
+  <mat-card style="margin: auto;" class="card">
+        <mat-tab-group  mat-stretch-tabs >
+            <mat-tab label="Sign In">
+                <form class="example-form" [formGroup]="form">
+                    <mat-form-field class="example-full-width" appearance="fill" style="width:100%">
+                      <mat-label>Email</mat-label>
+                      <input type ="email" matInput formControlName="email">
+                    </mat-form-field>
+                    <div *ngIf="f.email.touched && f.email.invalid">
+                      <span *ngIf=f.email.errors.required style="color:red">Email is required</span>
+                      <span *ngIf=f.email.errors.email style="color:red">Email type should be correct</span>
+                    </div>
+                    <mat-form-field class="example-full-width" appearance="fill" style="width:100%">
+                      <mat-label>Password</mat-label>
+                      <input type="password" matInput formControlName="password"> 
+                    </mat-form-field>
+                    <div *ngIf="f.password.touched && f.password.invalid">
+                      <span *ngIf="f.password.errors.required" style="color:red">Password is required</span>
+                    </div>
+                    <br>
+                      <button type="button" mat-raised-button color="primary"(click)="submit()" class="w-100">Sign in</button>
+                      <hr>
+                      <div class="text-center">
+                      <a style="color: blueviolet;" (click)="forgot()">Forgot Password?</a>
+                      <br>
+                      <br>
+                      <a style="color: blueviolet;" (click)="reset()">Want to Reset the Password?</a>
+                      <br>
+                      <br>
+                      <button class="text-center" mat-raised-button (click)="signup()" style="background-color: green;color:white">Sign Up</button>
+                      </div>
+                    </form>              
+            </mat-tab>
+          </mat-tab-group>
+  </mat-card>
+</div>

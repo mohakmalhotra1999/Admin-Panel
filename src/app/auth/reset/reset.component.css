@@ -1,0 +1,17 @@
+.card
+{
+    width: 30%;
+}
+
+@media screen and (max-width: 700px) 
+{
+    .card 
+    {
+      width:100%;
+    }
+}
+.cont
+{
+    padding-top:160px;
+    padding-bottom:160px;
+}

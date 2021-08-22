@@ -1,0 +1,20 @@
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 mt-2">Profile</div>
+    <div class="page__content shadow p-3 position-relative">
+        <form class="example-form" [formGroup]="form" (ngSubmit)="submit()">
+            <mat-form-field class="example-full-width" appearance="fill" style="width:100%">
+                <mat-label>Name</mat-label>
+                <input type ="text" matInput formControlName="name" [(ngModel)]="userName">
+              </mat-form-field>
+              <br>
+              <br>
+              <mat-form-field class="example-full-width" appearance="fill" style="width:100%">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" [(ngModel)]="email"> 
+              </mat-form-field>
+              <br>
+              <br>
+              <button mat-raised-button color="primary" style="background-color:#1e293b;">Update</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="container-fluid" style="background-color: azure;" class="cont">
+    <mat-card style="margin: auto;" class="card">
+        <mat-card-title>Forgot Password?</mat-card-title>
+        <br>
+        <mat-card-content>Enter your email</mat-card-content>
+        <form class="example-form" [formGroup]="form" (ngSubmit)="submit()">
+            <mat-form-field class="example-full-width" appearance="fill" style="width:100%">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email">
+            </mat-form-field>
+            <div *ngIf="f.email.touched && f.email.invalid">
+                <span *ngIf=f.email.errors.required style="color:red">Email is required</span>
+                <span *ngIf=f.email.errors.email style="color:red">Email type should be correct</span>
+            </div>
+            <button class="text-center" mat-raised-button style="background-color: green;color:white">Click Here</button>
+        </form>
+        <br>
+        <span>A verification mail will be send to your email to change your password</span>
+    </mat-card>
+</div>

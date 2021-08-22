@@ -1,0 +1,31 @@
+<div class="container-fluid" style="background-color: azure;" class="cont">
+    <mat-card style="margin: auto;" class="card">
+        <mat-card-title>Reset Password</mat-card-title>
+        <br>
+        <form class="example-form" [formGroup]="form" (ngSubmit)="submit()">
+            <!-- <mat-form-field class="example-full-width" appearance="fill" style="width:100%">
+                <mat-label>Enter your Email</mat-label>
+                <input type="email" matInput formControlName="email">
+            </mat-form-field>
+            <div *ngIf="f.email.touched && f.email.invalid">
+                <span *ngIf=f.email.errors.required style="color:red">Email is required</span>
+                <span *ngIf=f.email.errors.email style="color:red">Email type should be correct</span>
+            </div> -->
+            <mat-form-field class="example-full-width" appearance="fill" style="width:100%">
+                <mat-label>New Password</mat-label>
+                <input type="password" matInput formControlName="newpassword">
+            </mat-form-field>
+            <div *ngIf="f.newpassword.touched && f.newpassword.invalid">
+                <span *ngIf="f.newpassword.errors.required" style="color:red">Please enter your current password</span>
+              </div>
+            <mat-form-field class="example-full-width" appearance="fill" style="width:100%">
+                <mat-label>Confirm Password</mat-label>
+                <input type="password" matInput formControlName="confirmpassword">
+            </mat-form-field>
+            <div *ngIf="f.confirmpassword.touched && f.confirmpassword.invalid">
+                <span *ngIf="f.confirmpassword.errors.required" style="color:red">Please enter the new password</span>
+              </div>
+            <button class="text-center" mat-raised-button style="background-color: green;color:white">Reset</button>
+        </form>
+    </mat-card>
+</div>

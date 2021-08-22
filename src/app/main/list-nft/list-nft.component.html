@@ -1,0 +1,20 @@
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 mt-2">List NFT</div>
+    <div class="page__content shadow p-3 position-relative">
+        <table datatable class="row-border hover" [dtOptions]="dtOptions">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i of dataa">
+                    <td>{{i.email}}</td>
+                    <td>{{i.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- -----------------------------------------table ended --------------------------------------- -->
+    </div>
+</div>
