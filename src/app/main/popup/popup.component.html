@@ -1,0 +1,68 @@
+<br>
+<br>
+<form class="example-form" [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field
+        class="example-full-width"
+        appearance="fill"
+        style="width: 100%">
+        <mat-label>Title</mat-label>
+        <input type="text" formControlName="name" matInput [(ngModel)]="name"/>
+    </mat-form-field>
+    <div *ngIf="f.name.touched && f.name.invalid">
+        <span *ngIf="f.name.errors.required" style="color: red">Title
+            is required</span>
+        <span *ngIf="f.name.errors.minlength" style="color: red">Title
+            should be minimum of 3 characters</span>
+        <span *ngIf="f.name.errors.maxlength" style="color: red">Title
+            should be maximum of 7 characters</span>
+    </div>
+    <br>
+    <br>
+    <mat-form-field
+        class="example-full-width"
+        appearance="fill"
+        style="width: 100%">
+        <mat-label>Description</mat-label>
+        <textarea formControlName="description" matInput [(ngModel)]="description"></textarea>
+    </mat-form-field>
+    <div *ngIf="f.description.touched && f.description.invalid">
+        <span *ngIf="f.description.errors.required" style="color: red">Description
+            is required</span>
+    </div>
+    <br>
+    <br>
+    <mat-grid-list cols="2" rowHeight="4:1">
+        <mat-grid-tile>
+            <mat-form-field
+                class="example-full-width"
+                appearance="fill"
+                style="width: 100%">
+                <mat-label>Type</mat-label>
+                <mat-select formControlName="type" matInput [(ngModel)]="type">
+                    <mat-option value="IMAGE">Image</mat-option>
+                    <mat-option value="AUDIO">Audio</mat-option>
+                    <mat-option value="VIDEO">Video</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="f.type.touched && f.type.invalid">
+                <span *ngIf="f.type.errors.required" style="color: red">Type
+                    is required</span>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+        <input type="file" formControlName="file" [(ngModel)]="file"/>
+        <!-- (change)="onFileSelected($event)" -->
+        <!-- <div style="visibility: hidden;">
+        <mat-form-field class="example-full-width" appearance="fill" style="width: 100%">
+            <input matInput formControlName="someFCN">
+        </mat-form-field>
+       </div> -->
+        </mat-grid-tile>
+    </mat-grid-list>
+    <br>
+    <br>
+    <button>Submit</button>
+</form>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+</div>

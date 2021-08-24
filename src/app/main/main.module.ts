@@ -20,16 +20,18 @@ import {RouterModule} from '@angular/router';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatDialogModule} from '@angular/material/dialog';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import { ListNftComponent } from './list-nft/list-nft.component';
 import { BrowserModule } from "@angular/platform-browser";
 import { DataTablesModule } from "angular-datatables";
 import { ProfileComponent } from './profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PopupComponent } from './popup/popup.component';
 
 
 @NgModule({
-  declarations: [SidenavComponent, MainComponent, HeaderComponent, DashboardComponent, ListNftComponent, ProfileComponent],
+  declarations: [SidenavComponent, MainComponent, HeaderComponent, DashboardComponent, ListNftComponent, ProfileComponent, PopupComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -43,6 +45,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatDividerModule,
     MatIconModule,
     MatListModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,

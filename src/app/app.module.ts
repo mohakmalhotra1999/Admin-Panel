@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +16,7 @@ import { AuthGuard } from './guards/auth.guard';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,

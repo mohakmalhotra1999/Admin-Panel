@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -10,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ForgotComponent implements OnInit 
 {
-  constructor(private toastr: ToastrService,private service:AuthService) { }
+  constructor(private toastr: ToastrService,private service:AuthService,private router:Router) { }
   form=new FormGroup({
     email:new FormControl('',[Validators.required,Validators.email])
   });
@@ -49,6 +50,10 @@ export class ForgotComponent implements OnInit
     {
       this.toastr.error("Please enter the email to receive the mail");
     }
+  }
+  signin()
+  {
+    this.router.navigate(['login2'])
   }
   
 

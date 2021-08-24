@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -10,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class Signup2Component implements OnInit
 {
-  constructor(private toastr: ToastrService,private service:AuthService) { }
+  constructor(private toastr: ToastrService,private service:AuthService,private router:Router) { }
   //form validation started----------------------------------------------
   form = new FormGroup({
     name: new FormControl('', [
@@ -46,7 +47,7 @@ export class Signup2Component implements OnInit
           email:this.form.value.email,
           password:this.form.value.password,
           name:this.form.value.name,
-          role: 'user'
+          role: 'admin'
         }
         console.log("object =============>>",obj)
         //calling the api for signup
@@ -81,6 +82,10 @@ export class Signup2Component implements OnInit
       console.log('please fill form correctly');
       this.toastr.error('Please fill the form correctly');
     }
+  }
+  signin()
+  {
+    this.router.navigate(['login2'])
   }
   
 

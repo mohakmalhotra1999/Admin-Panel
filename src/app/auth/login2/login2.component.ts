@@ -42,7 +42,7 @@ export class Login2Component implements OnInit
      console.log(this.form.value);
      this.service.login(this.form.value).subscribe((data)=>{
        console.log("data is ===================>>",data)
-       this.router.navigate(['/main'])
+       this.router.navigate(['/main/dashboard'])
        //making the object to store the data of the user------
        let user={
          name:data.user.name,

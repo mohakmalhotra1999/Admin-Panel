@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, ReplaySubject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { MainService } from 'src/app/services/main.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -31,7 +32,7 @@ export class DashboardComponent implements OnInit
   //base 64 conversion over-----------------------------------------------------
   //starting the form----------------------
   form =new FormGroup({
-    title:new FormControl('',[
+    name:new FormControl('',[
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(7),
@@ -48,18 +49,38 @@ export class DashboardComponent implements OnInit
  {
    if(this.form.valid==true)
    {
-    this.form.value.file=this.base64Output;
+    //this.form.value.file=this.base64Output;
+    this.form.value.file="XYZ";
     console.log(this.form.value);
+    this.service.sendnft(this.form.value).subscribe((data)=>{
+      console.log("sended========>>",data);
+    },
+    (err) => {
+     if(err.error.message==undefined)
+     {
+       console.log("undefined===========>>");
+       this.toastr.error("API is not working");
+       //this.router.navigate(['/main']);
+       //this.spinner.hide();
+     }
+     else
+     {
+       this.toastr.error(err.error.message);
+       console.log("error we are getting=============>>",err.error.message);
+       //this.spinner.hide();
+     }
+    })
     this.toastr.success("Form submitted successfully");
    }
    else
    {
      console.log("cannot be submitted");
      this.toastr.error("Please fill all the details correctly");
+
    }
 
  }
-  constructor(private toastr:ToastrService) { }
+  constructor(private toastr:ToastrService,private service:MainService) { }
 
   ngOnInit(): void
   {

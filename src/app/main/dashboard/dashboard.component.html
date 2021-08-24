@@ -7,14 +7,14 @@
                 appearance="fill"
                 style="width: 100%">
                 <mat-label>Title</mat-label>
-                <input type="text" formControlName="title" matInput />
+                <input type="text" formControlName="name" matInput />
             </mat-form-field>
-            <div *ngIf="f.title.touched && f.title.invalid">
-                <span *ngIf="f.title.errors.required" style="color: red">Title
+            <div *ngIf="f.name.touched && f.name.invalid">
+                <span *ngIf="f.name.errors.required" style="color: red">Title
                     is required</span>
-                <span *ngIf="f.title.errors.minlength" style="color: red">Title
+                <span *ngIf="f.name.errors.minlength" style="color: red">Title
                     should be minimum of 3 characters</span>
-                <span *ngIf="f.title.errors.maxlength" style="color: red">Title
+                <span *ngIf="f.name.errors.maxlength" style="color: red">Title
                     should be maximum of 7 characters</span>
             </div>
             <mat-form-field
@@ -36,9 +36,9 @@
                         style="width: 100%">
                         <mat-label>Type</mat-label>
                         <mat-select formControlName="type" matInput>
-                            <mat-option value="image">Image</mat-option>
-                            <mat-option value="audio">Audio</mat-option>
-                            <mat-option value="video">Video</mat-option>
+                            <mat-option value="IMAGE">Image</mat-option>
+                            <mat-option value="AUDIO">Audio</mat-option>
+                            <mat-option value="VIDEO">Video</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <div *ngIf="f.type.touched && f.type.invalid">

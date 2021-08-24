@@ -1,20 +1,32 @@
 <div class="container-fluid page">
     <div class="d-flex page__box p-3 mt-2">List NFT</div>
     <div class="page__content shadow p-3 position-relative">
-        <table datatable class="row-border hover" [dtOptions]="dtOptions">
+        <table datatable class="row-border hover" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
             <thead>
                 <tr>
-                    <th>Email</th>
-                    <th>Name</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>File</th>
+                    <th>Button</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let i of dataa">
-                    <td>{{i.email}}</td>
+                <tr *ngFor="let i of nftArray;let index=index">
                     <td>{{i.name}}</td>
+                    <td>{{i.description}}</td>
+                    <td>{{i.type}}</td>
+                    <td>{{i.file}}</td>
+                    <td><button mat-button (click)="bind(i,index);openDialog();">Update</button></td>
                 </tr>
             </tbody>
         </table>
         <!-- -----------------------------------------table ended --------------------------------------- -->
     </div>
 </div>
+
+<!-- <h1 mat-dialog-title>Dialog with elements</h1>
+<div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</div> -->
