@@ -37,6 +37,16 @@ export class MainService
     let url='https://coinapi.seekware.in/v1/nfts';
     return this.http.post<any>(url,obj,httpOptions);
   }
+  updatenft(obj,id)
+  {
+    let httpOptions = this.getHeader();
+    let url=`https://coinapi.seekware.in/v1/nfts/${id}`;
+    return this.http.patch<any>(url,obj,httpOptions)
+  }
+  // rerender()
+  // {
+  //   this.getnft();
+  // }
   gettoken()
   {
     var x=localStorage.getItem('token');

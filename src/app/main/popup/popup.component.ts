@@ -1,6 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialogRef,MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { MainService } from 'src/app/services/main.service';
+import { ListNftComponent } from '../list-nft/list-nft.component';
 
 
 @Component({
@@ -15,6 +19,7 @@ export class PopupComponent implements OnInit
   description;
   type;
   file;
+  id;
 
   //starting the form----------------------
   form =new FormGroup({
@@ -35,9 +40,38 @@ export class PopupComponent implements OnInit
   //submitting the form------------------------
   submit()
   {
-    console.log("submitted")
+    if(this.form.valid)
+    {
+      this.form.value.file="XYZ"
+      //equatting the id-----
+      this.id=this.data.id;
+      console.log("id--------->>",this.id)
+      console.log("values after submitting dialog----------->>",this.form.value);
+      this.service.updatenft(this.form.value,this.data.id).subscribe((res)=>{
+      console.log("modal responded correctly------------>>",res)
+      //closing the dialog------
+      this.dialogRef.close(); 
+      },
+      (err) => {
+       if(err.error.message==undefined)
+       {
+         console.log("undefined===========>>");
+         this.toastr.error("API is not working");
+       }
+       else
+       {
+         this.toastr.error(err.error.message);
+         console.log("error we are getting=============>>",err.error.message);
+         //this.spinner.hide();
+       }
+      })    
+    }
+    else
+    {
+      this.toastr.error("Fill the form correctly");
+    }
   }
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private service:MainService,private toastr:ToastrService,private router:Router,private dialogRef:MatDialogRef<ListNftComponent>) { }
 
   ngOnInit(): void 
   {
@@ -47,7 +81,7 @@ export class PopupComponent implements OnInit
     this.name=this.data.name;
     this.description=this.data.description;
     this.type=this.data.type;
-    this.file=this.data.file
+    this.file=this.data.file;
   }
 
 }

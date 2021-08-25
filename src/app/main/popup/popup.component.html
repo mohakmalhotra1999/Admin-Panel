@@ -50,7 +50,8 @@
             </div>
         </mat-grid-tile>
         <mat-grid-tile>
-        <input type="file" formControlName="file" [(ngModel)]="file"/>
+        <input type="file" formControlName="file" />
+        <!-- [(ngModel)]="file" cannot be bind as it is a string -->
         <!-- (change)="onFileSelected($event)" -->
         <!-- <div style="visibility: hidden;">
         <mat-form-field class="example-full-width" appearance="fill" style="width: 100%">
@@ -61,7 +62,7 @@
     </mat-grid-list>
     <br>
     <br>
-    <button>Submit</button>
+    <button (click)="submit()">Submit</button>
 </form>
 <div mat-dialog-actions>
     <button mat-button mat-dialog-close>Close</button>

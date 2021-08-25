@@ -3,7 +3,7 @@ import { MainService } from 'src/app/services/main.service';
 import { ToastrService } from 'ngx-toastr';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
-import {MatDialog,MatDialogRef} from '@angular/material/dialog';
+import {MatDialog,MatDialogRef,MatDialogConfig } from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
 @Component({
   selector: 'app-list-nft',
@@ -23,6 +23,7 @@ export class ListNftComponent implements OnInit
   description;
   type;
   file;
+  id;
   constructor(private service:MainService,private toastr:ToastrService,public dialog: MatDialog) { }
 
   ngOnInit(): void 
@@ -31,8 +32,8 @@ export class ListNftComponent implements OnInit
   }
 
   //opening the dialogue box-------
-  openDialog() {
-    this.dialog.open(PopupComponent,{
+  openDialog() :void {
+    const dialogRef =this.dialog.open(PopupComponent,{
       //setting width and height of dialog box-------
       width: '600px',
       height: '500px',
@@ -41,9 +42,15 @@ export class ListNftComponent implements OnInit
         name: this.name,
         description:this.description,
         type:this.type,
-        file:this.file
+        file:this.file,
+        id:this.id
       }
     })
+    dialogRef.afterClosed().subscribe((res)=>{
+      console.log("the dialog is closed");
+      //this.service.getnft();
+      this.ngOnInit();
+    });
   }
 
   //binding the values to be send to the modal
@@ -54,6 +61,7 @@ export class ListNftComponent implements OnInit
     this.description=value.description;
     this.type=value.type;
     this.file=value.file;
+    this.id=value.id;
   }
 
   //loading the data
@@ -64,7 +72,7 @@ export class ListNftComponent implements OnInit
       pageLength: 5,
       lengthMenu: [5,10,15]
     };
-    this.dtTrigger.next();
+    //this.dtTrigger.next();
     this.service.getnft().subscribe((res)=>{
       console.log("our nfts are==========>>>",res['results']);
       this.nftArray=res['results'];
@@ -90,11 +98,13 @@ export class ListNftComponent implements OnInit
 
   //rerendering the table-------------------
   rerender(): void {
+    //this.loaddata();
     console.log("rerendering the table========>>");
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
       this.dtOptions = {
         pagingType: 'full_numbers',
-        pageLength: 5
+        pageLength: 5,
+        lengthMenu: [5,10,15]
       };
       //destroying the first table
       dtInstance.destroy();
